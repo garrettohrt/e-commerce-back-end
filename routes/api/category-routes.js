@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
     })
     if (!oneCategory) {
       res.status(404).json({ message: 'No category found by that id' });
-      return;
+      
     }
     res.status(200).json(oneCategory);
   } catch (err) {
@@ -84,7 +84,7 @@ router.delete('/:id', async (req, res) => {
       }
     })
     if (!deleteCategory) {
-      res.status(500).json({ message: 'failed to delete category' });
+      res.status(400).json({ message: 'failed to delete category' });
       
     } else res.status(200).json(deleteCategory);
   } catch (err) {
