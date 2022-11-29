@@ -84,7 +84,7 @@ router.delete('/:id', async (req, res) => {
       }
     })
     if (!deleteTag) {
-      res.status(400).json({ message: 'failed to delete category' });
+      res.status(400).json({ message: 'failed to delete tag' });
       
     } else res.status(200).json(deleteTag);
   } catch (err) {
