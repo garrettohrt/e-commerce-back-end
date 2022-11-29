@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     });
     if (!allProducts) {
       res.status(404).json({ message: 'No products found' });
-      
+
     }
     res.status(200).json(allProducts);
   } catch (err) {
@@ -30,26 +30,26 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   // find a single product by its `id`
   // be sure to include its associated Category and Tag data
-try {
-  const oneProduct = await Product.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [
-      Category,
-      {
-        model: Tag,
-        through: ProductTag
-      }
-    ]
-  })
-  if (!oneProduct) {
-    res.status(404).json({ message: 'No product found' });
+  try {
+    const oneProduct = await Product.findOne({
+      where: {
+        id: req.params.id
+      },
+      include: [
+        Category,
+        {
+          model: Tag,
+          through: ProductTag
+        }
+      ]
+    })
+    if (!oneProduct) {
+      res.status(404).json({ message: 'No product found' });
+    }
+    res.status(200).json(oneProduct);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
-  res.status(200).json(oneProduct);
-} catch (err) {
-  res.status(500).json({ message: err.message });
-}
 });
 
 // create new product
@@ -136,7 +136,7 @@ router.delete('/:id', async (req, res) => {
     })
     if (!deleteProduct) {
       res.status(400).json({ message: 'failed to delete category' });
-      
+
     } else res.status(200).json(deleteProduct);
   } catch (err) {
     res.status(500).json({ message: err.message });
