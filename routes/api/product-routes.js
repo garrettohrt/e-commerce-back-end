@@ -135,7 +135,7 @@ router.delete('/:id', async (req, res) => {
       }
     })
     if (!deleteProduct) {
-      res.status(400).json({ message: 'failed to delete category' });
+      res.status(400).json({ message: 'failed to delete product' });
 
     } else res.status(200).json(deleteProduct);
   } catch (err) {
